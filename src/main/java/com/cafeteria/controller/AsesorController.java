@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/asesores")
 @RequiredArgsConstructor
@@ -38,5 +40,17 @@ public class AsesorController {
     @Operation(summary = "Buscar todos los asesores")
     public Page<AsesorModel> getAllAsesores(@PathVariable int page, @PathVariable int size) {
         return asesorService.getAllAsesores(page, size);
+    }
+
+    @GetMapping("/asesores/v2")
+    @Operation(summary = "Mostrar todos los asesores")
+    public List<AsesorModelV2> getAllAsesoresV2() {
+        return asesorService.getAllAsesoresV2();
+    }
+
+    @GetMapping("filter/page/{page}/{size}")
+    @Operation(summary = "Buscar asesores paginados por nombre")
+    public Page<AsesorModelV2> getAllAsesoresV2(@PathVariable int page, @PathVariable int size, @RequestParam(required = false) String nombre) {
+        return asesorService.getAllAsesoresV2(page, size, nombre);
     }
 }

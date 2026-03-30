@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -67,4 +68,26 @@ public class AsesorServiceImpl implements AsesorService {
 
         return asesorRepository.findAll(pagerequest).map(asesorMapper::entityToModel);
     }
+
+    @Override
+    public List<AsesorModelV2> getAllAsesoresV2() {
+        return asesorRepository.findAll()
+                .stream()
+                .map(asesorMapper::entityToModelV2)
+                .toList();
+    }
+
+    @Override
+    public Page<AsesorModelV2> getAllAsesoresV2(int page, int size, String nombre) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+
+        if (nombre == null || nombre.isEmpty()) {
+
+            return asesorRepository.findAll(pageRequest)
+                    .map(asesorMapper::entityToModelV2);
+        }
+        return asesorRepository.findByNombreContainingIgnoreCase(nombre, pageRequest)
+                .map(asesorMapper::entityToModelV2);
+    }
+
 }

@@ -5,6 +5,8 @@ import com.cafeteria.model.AsesorModel;
 import com.cafeteria.model.AsesorModelV2;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface AsesorService {
 
     AsesorModel createAsesor(CreateAsesorDTO createAsesorDTO);
@@ -14,4 +16,8 @@ public interface AsesorService {
     AsesorModelV2 getAsesorById(Long id);
 
     Page<AsesorModel> getAllAsesores(int page, int size);
+
+    List<AsesorModelV2> getAllAsesoresV2();
+
+    Page<AsesorModelV2> getAllAsesoresV2(int page, int size, String nombre);
 }

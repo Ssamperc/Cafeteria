@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AsesorRepository extends JpaRepository<Asesor, Long> {
+
+    Page<Asesor> findByNombreContainingIgnoreCase(String nombre, PageRequest pageRequest);
+
 }
