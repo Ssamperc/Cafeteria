@@ -7,10 +7,11 @@ import java.time.LocalDate;
 @Data
 public class AsesorModel {
 
-    private long id;
+    private String id;
     private String nombre;
     private String cc;
     private Integer age;
+    private String evidence;
     private LocalDate creationDate;
     private LocalDate modifationDate;
 }

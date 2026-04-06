@@ -19,3 +19,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+
+app:
+  files:
+    asesor:
+      upload-dir: uploads/asesores
+  sync:
+    asesor-url: http://localhost:8080/api/asesores
